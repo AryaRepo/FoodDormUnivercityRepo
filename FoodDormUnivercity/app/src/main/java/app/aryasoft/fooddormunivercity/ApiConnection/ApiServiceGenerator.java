@@ -21,10 +21,10 @@ public class ApiServiceGenerator {
     private static OkHttpClient.Builder HttpClient;
     private final static String BASE_URL = "http://test.aryasoft.org/";
 
-    public static DeceasedApis getApiService()
+    public static DormApi getApiService()
     {
         initializeComponents();
-        return RetrofitInstance.create(DeceasedApis.class);
+        return RetrofitInstance.create(DormApi.class);
     }
 
     private static void initializeComponents()
