@@ -47,7 +47,8 @@ public class LoginActivity extends AppCompatActivity implements OnResponseFailur
             @Override
             public void onClick(View v)
             {
-                login();
+                //login();
+                startActivity(new Intent(LoginActivity.this, LandActivity.class));
             }
         });
     }

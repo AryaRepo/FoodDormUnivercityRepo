@@ -13,14 +13,17 @@ public class DormMembersAdapterViewHolder extends RecyclerView.ViewHolder
 {
     TextView txtStudentName;
     TextView txtStudentCode;
+    TextView txtStudentFood;
     Button btnDeliveryState;
+
     DormMembersAdapterViewHolder(@NonNull View itemView)
     {
         super(itemView);
         //-------------------
-        txtStudentName=itemView.findViewById(R.id.txtStudentName);
-        txtStudentCode=itemView.findViewById(R.id.txtStudentCode);
-        btnDeliveryState=itemView.findViewById(R.id.btnDeliveryState);
+        txtStudentName = itemView.findViewById(R.id.txtStudentName);
+        txtStudentCode = itemView.findViewById(R.id.txtStudentCode);
+        txtStudentFood = itemView.findViewById(R.id.txtStudentFood);
+        btnDeliveryState = itemView.findViewById(R.id.btnDeliveryState);
     }
 }
 

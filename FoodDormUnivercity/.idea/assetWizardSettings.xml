@@ -28,9 +28,10 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="ic_save" />
-                            <entry key="sourceFile" value="C:\Users\Mrbinary-Pc\Desktop\restaurant.svg" />
+                            <entry key="outputName" value="ic_no_person_founded" />
+                            <entry key="sourceFile" value="C:\Users\Mrbinary-Pc\Desktop\user.svg" />
                           </map>
                         </option>
                       </PersistentState>

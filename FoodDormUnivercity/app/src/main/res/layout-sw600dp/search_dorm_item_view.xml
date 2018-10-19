@@ -20,7 +20,6 @@
             android:layout_margin="8dp"
             android:fontFamily="@font/iran_yekan_mobile_light"
             android:gravity="right"
-            android:text="محمدامین چهاردولی"
             android:textColor="#212121"
             android:textSize="20sp"
             android:textStyle="bold"/>
@@ -33,10 +32,8 @@
             android:layout_margin="8dp"
             android:fontFamily="@font/iran_yekan_mobile_light"
             android:gravity="right"
-            android:text="شماره دانشجویی 95221033111060"
             android:textColor="#212121"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:textSize="20sp"/>
 
         <TextView
             android:id="@+id/txtStudentFood"
@@ -46,7 +43,6 @@
             android:layout_margin="8dp"
             android:fontFamily="@font/iran_yekan_mobile_light"
             android:gravity="right"
-            android:text="غذای شما : کوبیده"
             android:textColor="#212121"
             android:textSize="20sp"
             android:textStyle="bold"/>
