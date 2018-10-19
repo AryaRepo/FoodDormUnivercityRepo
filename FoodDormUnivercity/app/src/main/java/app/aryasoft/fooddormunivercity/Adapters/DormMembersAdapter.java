@@ -1,6 +1,7 @@
 package app.aryasoft.fooddormunivercity.Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -38,7 +39,7 @@ public class DormMembersAdapter extends RecyclerView.Adapter<DormMembersAdapterV
             return;
         holder.txtStudentName.setText(studentDataList.get(position).StudentName);
         holder.txtStudentCode.setText(studentDataList.get(position).StudentCode);
-        holder.chkDeliveryCheck.setOnClickListener(new View.OnClickListener()
+        holder.btnDeliveryState.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)

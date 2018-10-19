@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
+    app:cardCornerRadius="5dp"
+    android:layout_margin="8dp"
+    app:cardElevation="2dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txtStudentName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:fontFamily="@font/iran_yekan_mobile_light"
+            android:gravity="right"
+            android:text="محمدامین چهاردولی"
+            android:textColor="#212121"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/txtStudentCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtStudentName"
+            android:layout_margin="8dp"
+            android:fontFamily="@font/iran_yekan_mobile_light"
+            android:gravity="right"
+            android:text="شماره دانشجویی 95221033111060"
+            android:textColor="#212121"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/txtStudentFood"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtStudentCode"
+            android:layout_margin="8dp"
+            android:fontFamily="@font/iran_yekan_mobile_light"
+            android:gravity="right"
+            android:text="غذای شما : کوبیده"
+            android:textColor="#212121"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/btnDeliveryState"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtStudentFood"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/btn_delivery_state"
+            android:fontFamily="@font/iran_yekan_mobile_light"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="تحویل نگرفته"
+            android:textColor="#ffffff"
+            android:textSize="16sp"/>
+
+
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
