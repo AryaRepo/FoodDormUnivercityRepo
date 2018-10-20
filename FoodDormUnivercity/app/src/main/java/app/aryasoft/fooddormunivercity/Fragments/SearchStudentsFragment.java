@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import app.aryasoft.fooddormunivercity.Adapters.DormMembersAdapter;
 import app.aryasoft.fooddormunivercity.Models.SearchModel;
 import app.aryasoft.fooddormunivercity.Models.StudentModel;
+import app.aryasoft.fooddormunivercity.Modules.ModuleInterface.OnSearchStudentListener;
 import app.aryasoft.fooddormunivercity.Modules.Utils.SearchModule;
 import app.aryasoft.fooddormunivercity.R;
 
@@ -36,6 +37,7 @@ public class SearchStudentsFragment extends Fragment
     private RecyclerView recyclerSearchDormMembers;
     private DormMembersAdapter recyclerDormMembersAdapter;
     private LinearLayoutManager recyclerDormMembersLayoutManager;
+    private ArrayList<StudentModel> resultStudentDataList;
 
     //---------------
     public SearchStudentsFragment()
@@ -61,7 +63,7 @@ public class SearchStudentsFragment extends Fragment
 
     private void initViews(View view)
     {
-        linNoData= view.findViewById(R.id.linNoData);
+        linNoData = view.findViewById(R.id.linNoData);
         recyclerSearchDormMembers = view.findViewById(R.id.recyclerSearchDormMembers);
         edtStudentNameSearch = view.findViewById(R.id.edtStudentNameSearch);
         edtStudentFamilySearch = view.findViewById(R.id.edtStudentFamilySearch);
@@ -78,23 +80,40 @@ public class SearchStudentsFragment extends Fragment
             @Override
             public void onClick(View v)
             {
+                resultStudentDataList = new ArrayList<>();
                 recyclerDormMembersAdapter.clearStudentDataList();
-                SearchModule searchModule = new SearchModule(fillDummyData());
+                SearchModule searchModule = new SearchModule(fillDummyData(), fragmentContext);
                 SearchModel searchModel = new SearchModel();
                 searchModel.StudentName = edtStudentNameSearch.getText().toString();
                 searchModel.StudentFamily = edtStudentFamilySearch.getText().toString();
                 searchModel.StudentCode = edtStudentCodeSearch.getText().toString();
                 //-----------------
-                ArrayList<StudentModel>resultStudentDataList=searchModule.SearchStudent(searchModel);
-                if(resultStudentDataList.size()==0)
+                searchModule.execute(searchModel);
+                searchModule.setOnSearchStudentListener(new OnSearchStudentListener()
                 {
-                    recyclerSearchDormMembers.setVisibility(View.GONE);
-                    linNoData.setVisibility(View.VISIBLE);
-                    return;
-                }
-                recyclerSearchDormMembers.setVisibility(View.VISIBLE);
-                linNoData.setVisibility(View.GONE);
-                recyclerDormMembersAdapter.addStudentDataList(resultStudentDataList);
+                    @Override
+                    public void OnSearchStudent(ArrayList<StudentModel> resultStudentData)
+                    {
+                        resultStudentDataList = resultStudentData;
+                        getActivity().runOnUiThread(new Runnable()
+                        {
+                            @Override
+                            public void run()
+                            {
+                                if (resultStudentDataList.size() == 0)
+                                {
+                                    recyclerSearchDormMembers.setVisibility(View.GONE);
+                                    linNoData.setVisibility(View.VISIBLE);
+                                    return;
+                                }
+                                recyclerSearchDormMembers.setVisibility(View.VISIBLE);
+                                linNoData.setVisibility(View.GONE);
+                                recyclerDormMembersAdapter.addStudentDataList(resultStudentDataList);
+                            }
+                        });
+
+                    }
+                });
             }
         });
     }
@@ -108,37 +127,42 @@ public class SearchStudentsFragment extends Fragment
     {
         int stCode = 0;
         ArrayList<StudentModel> students = new ArrayList<>();
-        students.add(new StudentModel(++stCode, "مهدی", "عباسی", "9522104516445", "کباب کوبیده سلطانی"));
-        students.add(new StudentModel(++stCode, "احمد", "غیاثوند", "966810378484", "جوجه کباب"));
-        students.add(new StudentModel(++stCode, "رضا", "سعیدی نیا", "952214361464", "کباب برگ"));
-        students.add(new StudentModel(++stCode, "سعید", "ترکمن", "845610331464", "برنج و خورش قرمه سبزی"));
-        students.add(new StudentModel(++stCode, "مرتضی", "احمدوند", "652510331144", "سبزی پلو با ماهی"));
-        students.add(new StudentModel(++stCode, "مسعود", "طلایی", "951110531494", "کشمش پلو"));
-        students.add(new StudentModel(++stCode, "محمد", "غیاثوند", "951110531494", "برنج و تن ماهی"));
-        students.add(new StudentModel(++stCode, "جواد", "امینی", "972210331464", "کباب کوبیده"));
-        students.add(new StudentModel(++stCode, "محمد امین", "چهاردولی", "931560331431", "ماکارونی"));
-        students.add(new StudentModel(++stCode, "سیاوش", "قمری", "955312331464", "برنج و خورش قیمه"));
-        students.add(new StudentModel(++stCode, "نگار", "شاملو", "856210331454", "عدس پلو"));
-        students.add(new StudentModel(++stCode, "سارا", "خلخالی", "9734403354698", "کباب کوبیده"));
-        students.add(new StudentModel(++stCode, "میثم", "مرادی", "941350331524", "سبزی پلو"));
-        students.add(new StudentModel(++stCode, "مجید", "طهماسبی", "954210331484", "آبگوشت"));
-        students.add(new StudentModel(++stCode, "سلمان", "راد", "922810338462", "برنج و مرغ"));
-        students.add(new StudentModel(++stCode, "فرید", "میرزایی", "912210331464", "چلو ماهی"));
-        students.add(new StudentModel(++stCode, "علی", "احمدی", "891573511467", "ماهی سالمون"));
-        students.add(new StudentModel(++stCode, "جاسم", "ترکاشوند", "955510481424", "میگو"));
-        students.add(new StudentModel(++stCode, "حبیب", "مرادی", "932815331464", "خرچنگ"));
-        students.add(new StudentModel(++stCode, "امیر", "عباسی", "988210331464", "کباب کوبیده"));
-        students.add(new StudentModel(++stCode, "محسن", "گودرزی", "942210331264", "کباب کوبیده"));
-        students.add(new StudentModel(++stCode, "حسن", "مصطفوی", "952210231262", "کباب کوبیده"));
-        students.add(new StudentModel(++stCode, "حسین", "صدر", "952210231263", "سالاد الویه"));
-        students.add(new StudentModel(++stCode, "فاطمه", "شاملو", "867414334425", "استانبلی با ماست"));
-        students.add(new StudentModel(++stCode, "داوود", "جهانشاهی", "954516336864", "کباب کوبیده"));
-        students.add(new StudentModel(++stCode, "زهرا", "بیاتی", "952213831469", "عدس پلو"));
-        students.add(new StudentModel(++stCode, "بهمن", "بابایی", "942210331789", "برنچ و مرغ"));
-        students.add(new StudentModel(++stCode, "بابک", "سامنی", "952210331464", "سبزی پلو"));
-        students.add(new StudentModel(++stCode, "سمیه", "فاضلی", "952610731869", "چلو گوشت"));
-        students.add(new StudentModel(++stCode, "سهند", "غیاثوند", "952214331485", "ماکارونی"));
-        students.add(new StudentModel(++stCode, "حمید", "کسرایی", "964410331464", "قیمه نثار"));
+        for (int i = 1; i < 7000; ++i)
+        {
+
+
+            students.add(new StudentModel(++stCode, "مهدی", "عباسی", "9522104516445", "کباب کوبیده سلطانی"));
+            students.add(new StudentModel(++stCode, "احمد", "غیاثوند", "966810378484", "جوجه کباب"));
+            students.add(new StudentModel(++stCode, "رضا", "سعیدی نیا", "952214361464", "کباب برگ"));
+            students.add(new StudentModel(++stCode, "سعید", "ترکمن", "845610331464", "برنج و خورش قرمه سبزی"));
+            students.add(new StudentModel(++stCode, "مرتضی", "احمدوند", "652510331144", "سبزی پلو با ماهی"));
+            students.add(new StudentModel(++stCode, "مسعود", "طلایی", "951110531494", "کشمش پلو"));
+            students.add(new StudentModel(++stCode, "محمد", "غیاثوند", "951110531494", "برنج و تن ماهی"));
+            students.add(new StudentModel(++stCode, "جواد", "امینی", "972210331464", "کباب کوبیده"));
+            students.add(new StudentModel(++stCode, "محمد امین", "چهاردولی", "931560331431", "ماکارونی"));
+            students.add(new StudentModel(++stCode, "سیاوش", "قمری", "955312331464", "برنج و خورش قیمه"));
+            students.add(new StudentModel(++stCode, "نگار", "شاملو", "856210331454", "عدس پلو"));
+            students.add(new StudentModel(++stCode, "سارا", "خلخالی", "9734403354698", "کباب کوبیده"));
+            students.add(new StudentModel(++stCode, "میثم", "مرادی", "941350331524", "سبزی پلو"));
+            students.add(new StudentModel(++stCode, "مجید", "طهماسبی", "954210331484", "آبگوشت"));
+            students.add(new StudentModel(++stCode, "سلمان", "راد", "922810338462", "برنج و مرغ"));
+            students.add(new StudentModel(++stCode, "فرید", "میرزایی", "912210331464", "چلو ماهی"));
+            students.add(new StudentModel(++stCode, "علی", "احمدی", "891573511467", "ماهی سالمون"));
+            students.add(new StudentModel(++stCode, "جاسم", "ترکاشوند", "955510481424", "میگو"));
+            students.add(new StudentModel(++stCode, "حبیب", "مرادی", "932815331464", "خرچنگ"));
+            students.add(new StudentModel(++stCode, "امیر", "عباسی", "988210331464", "کباب کوبیده"));
+            students.add(new StudentModel(++stCode, "محسن", "گودرزی", "942210331264", "کباب کوبیده"));
+            students.add(new StudentModel(++stCode, "حسن", "مصطفوی", "952210231262", "کباب کوبیده"));
+            students.add(new StudentModel(++stCode, "حسین", "صدر", "952210231263", "سالاد الویه"));
+            students.add(new StudentModel(++stCode, "فاطمه", "شاملو", "867414334425", "استانبلی با ماست"));
+            students.add(new StudentModel(++stCode, "داوود", "جهانشاهی", "954516336864", "کباب کوبیده"));
+            students.add(new StudentModel(++stCode, "زهرا", "بیاتی", "952213831469", "عدس پلو"));
+            students.add(new StudentModel(++stCode, "بهمن", "بابایی", "942210331789", "برنچ و مرغ"));
+            students.add(new StudentModel(++stCode, "بابک", "سامنی", "952210331464", "سبزی پلو"));
+            students.add(new StudentModel(++stCode, "سمیه", "فاضلی", "952610731869", "چلو گوشت"));
+            students.add(new StudentModel(++stCode, "سهند", "غیاثوند", "952214331485", "ماکارونی"));
+            students.add(new StudentModel(++stCode, "حمید", "کسرایی", "964410331464", "قیمه نثار"));
+        }
         return students;
 
     }
