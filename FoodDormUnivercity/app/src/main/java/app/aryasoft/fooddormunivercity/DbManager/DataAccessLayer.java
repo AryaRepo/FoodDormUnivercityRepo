@@ -3,8 +3,10 @@ package app.aryasoft.fooddormunivercity.DbManager;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Environment;
 import android.util.Log;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -20,7 +22,9 @@ public class DataAccessLayer extends SQLiteOpenHelper
     {
         super(AppContext, dbname, null, 1);
         this.AppContext = AppContext;
-        dbpath = String.format("//data//data//%s//databases//", AppContext.getPackageName());
+
+        //dbpath = String.format("//data//data//%s//databases//", AppContext.getPackageName());
+        dbpath = this.AppContext.getApplicationInfo().dataDir+"/databases/";
         PrepareDataBase();
     }
 
@@ -58,24 +62,11 @@ public class DataAccessLayer extends SQLiteOpenHelper
 
     private boolean CheckDataBase()
     {
-        SQLiteDatabase checkDB = null;
-        try
-        {
-            String myPath = dbpath + dbname;
-            checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
-        } catch (Exception e)
-        {
-            Log.i("CheckDataBase :", e.getMessage());
-        }
-
-        if (checkDB != null)
-        {
-            checkDB.close();
-        }
-        return checkDB != null;
+        File dbFile = AppContext.getDatabasePath(dbname);
+        return dbFile.exists();
     }
 
-    public SQLiteDatabase OpenDataBase( )
+    SQLiteDatabase OpenDataBase()
     {
         String myPath = dbpath + dbname;
         db = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE | SQLiteDatabase.NO_LOCALIZED_COLLATORS);

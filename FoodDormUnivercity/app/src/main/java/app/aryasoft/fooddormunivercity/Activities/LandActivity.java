@@ -67,7 +67,12 @@ public class LandActivity extends AppCompatActivity
                     return;
                 }
                 ActiveTabMenu = 2;
-                switchFragment(new SearchStudentsFragment(), v, btnSubmitChanges, btnRefresh, btnSearchStudents, btnReportDelivered);
+                Bundle bundle = new Bundle();
+                int  deliveryType = 2;
+                bundle.putInt("deliveryType", deliveryType );
+                DeliveryFragment deliveryFragment = new DeliveryFragment();
+                deliveryFragment.setArguments(bundle);
+                switchFragment(deliveryFragment, v, btnSubmitChanges, btnRefresh, btnSearchStudents, btnReportDelivered);
             }
         });
         btnReportDelivered.setOnClickListener(new View.OnClickListener()
@@ -80,7 +85,12 @@ public class LandActivity extends AppCompatActivity
                     return;
                 }
                 ActiveTabMenu = 3;
-                switchFragment(new SearchStudentsFragment(), v, btnSubmitChanges, btnRefresh, btnSearchStudents, btnReportNotDelivered);
+                Bundle bundle = new Bundle();
+                int  deliveryType = 1;
+                bundle.putInt("deliveryType", deliveryType );
+                DeliveryFragment deliveryFragment = new DeliveryFragment();
+                deliveryFragment.setArguments(bundle);
+                switchFragment(deliveryFragment, v, btnSubmitChanges, btnRefresh, btnSearchStudents, btnReportNotDelivered);
             }
         });
         btnRefresh.setOnClickListener(new View.OnClickListener()
@@ -93,7 +103,7 @@ public class LandActivity extends AppCompatActivity
                     return;
                 }
                 ActiveTabMenu = 4;
-                switchFragment(new SearchStudentsFragment(), v, btnSearchStudents, btnSubmitChanges, btnReportDelivered, btnReportNotDelivered);
+               // switchFragment(new DeliveryFragment(), v, btnSearchStudents, btnSubmitChanges, btnReportDelivered, btnReportNotDelivered);
             }
         });
         btnSubmitChanges.setOnClickListener(new View.OnClickListener()
@@ -106,7 +116,7 @@ public class LandActivity extends AppCompatActivity
                     return;
                 }
                 ActiveTabMenu = 5;
-                switchFragment(new SearchStudentsFragment(), v, btnSearchStudents, btnRefresh, btnReportDelivered, btnReportNotDelivered);
+                //switchFragment(new DeliveryFragment(), v, btnSearchStudents, btnRefresh, btnReportDelivered, btnReportNotDelivered);
             }
         });
     }

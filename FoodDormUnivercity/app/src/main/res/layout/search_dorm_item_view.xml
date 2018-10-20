@@ -57,11 +57,9 @@
             android:layout_below="@id/txtStudentFood"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="8dp"
-            android:background="@drawable/btn_delivery_state"
             android:fontFamily="@font/iran_yekan_mobile_light"
             android:gravity="center"
             android:padding="5dp"
-            android:text="تحویل نگرفته"
             android:textColor="#ffffff"
             android:textSize="12sp"/>
 

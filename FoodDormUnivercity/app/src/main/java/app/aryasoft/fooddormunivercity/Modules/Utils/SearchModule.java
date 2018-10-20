@@ -1,22 +1,19 @@
 package app.aryasoft.fooddormunivercity.Modules.Utils;
 
-import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import app.aryasoft.fooddormunivercity.Models.SearchModel;
-import app.aryasoft.fooddormunivercity.Models.StudentModel;
+import app.aryasoft.fooddormunivercity.Models.Student;
 import app.aryasoft.fooddormunivercity.Modules.ModuleInterface.OnSearchStudentListener;
 
 public class SearchModule extends AsyncTask<SearchModel, Void, Void>
 {
-    private ArrayList<StudentModel> studentDataList;
+    private ArrayList<Student> studentDataList;
     private OnSearchStudentListener onSearchStudentListener;
 
-    public SearchModule(ArrayList<StudentModel> studentDataList)
+    public SearchModule(ArrayList<Student> studentDataList)
     {
         this.studentDataList = new ArrayList<>();
         this.studentDataList.addAll(studentDataList);
@@ -37,7 +34,7 @@ public class SearchModule extends AsyncTask<SearchModel, Void, Void>
 
     private void SearchStudent(SearchModel searchParams)
     {
-        ArrayList<StudentModel> resultStudentDataList = new ArrayList<>();
+        ArrayList<Student> resultStudentDataList = new ArrayList<>();
         //---------------------
         if (searchParams.StudentName.length() != 0 && searchParams.StudentFamily.length() != 0 && searchParams.StudentCode.length() != 0)
         {

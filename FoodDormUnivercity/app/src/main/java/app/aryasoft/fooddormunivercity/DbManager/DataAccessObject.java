@@ -6,7 +6,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-import app.aryasoft.fooddormunivercity.DbManager.DbModels.DeliveredReservationModel;
+import app.aryasoft.fooddormunivercity.Models.Student;
 
 public class DataAccessObject
 {
@@ -19,25 +19,29 @@ public class DataAccessObject
 
     }
 
-    public ArrayList<DeliveredReservationModel> getDeliveredReservation()
+    public ArrayList<Student> getDeliveredReservation()
     {
-        this.db = DAL.OpenDataBase();
-        ArrayList<DeliveredReservationModel> deliveredReservationList = new ArrayList<>();
+
+        ArrayList<Student> deliveredReservationList = new ArrayList<>();
         try
         {
-            Cursor cur = db.rawQuery("SELECT * FROM deliveredReservation ;", null);
+            this.db = DAL.OpenDataBase();
+            Cursor cur = db.rawQuery("SELECT * FROM Student ;", null);
             if (cur.getCount() > 0)
             {
                 if (cur.moveToFirst())
                 {
                     do
                     {
-                        DeliveredReservationModel deliveredReservationModel = new DeliveredReservationModel();
-                        deliveredReservationModel.RowId = cur.getInt(0);
-                        deliveredReservationModel.StudentID = cur.getInt(1);
-                        deliveredReservationModel.StudentCode = cur.getInt(2);
+                        Student deliveredStudents = new Student();
+                        deliveredStudents.StudentId = cur.getInt(1);
+                        deliveredStudents.StudentName = cur.getString(2);
+                        deliveredStudents.StudentFamily = cur.getString(3);
+                        deliveredStudents.StudentCode = cur.getString(4);
+                        deliveredStudents.StudentFoodName = cur.getString(5);
+                        deliveredStudents.ReserveState = cur.getInt(6);
                         //-----------------------------
-                        deliveredReservationList.add(deliveredReservationModel);
+                        deliveredReservationList.add(deliveredStudents);
                     } while (cur.moveToNext());
                 }
             }
@@ -50,12 +54,30 @@ public class DataAccessObject
         return deliveredReservationList;
     }
 
-    public boolean addDeliveredReservation(DeliveredReservationModel reservationModel)
+    public boolean addDeliveredReservation(Student reservationModel)
+    {
+        try
+        {
+            this.db = DAL.OpenDataBase();
+            db.execSQL("INSERT INTO Student " + "(StudentId,StudentName,StudentFamily,StudentCode,StudentFoodName,ReserveState)" +
+            " VALUES " + "('" + reservationModel.StudentId + "','" + reservationModel.StudentName+ "','"+ reservationModel.StudentFamily+ "','"+ reservationModel.StudentCode+ "','"+reservationModel.StudentFoodName+ "','"+reservationModel.ReserveState + "' )");
+            closeDb();
+            return true;
+
+        } catch (Exception exp)
+        {
+            Log.i("exp : ", exp.getMessage());
+            return false;
+        }
+
+    }
+
+    public boolean removeDeliveredReservation(int studentId)
     {
         this.db = DAL.OpenDataBase();
         try
         {
-            db.execSQL("INSERT INTO DeliveredReservation " + "(StudentID,StudentCode)" + " VALUES " + "('" + reservationModel.StudentID + "','" + reservationModel.StudentCode + "' )");
+            db.execSQL("DELETE FROM Student  WHERE StudentId=" + studentId);
             return true;
         } catch (Exception exp)
         {

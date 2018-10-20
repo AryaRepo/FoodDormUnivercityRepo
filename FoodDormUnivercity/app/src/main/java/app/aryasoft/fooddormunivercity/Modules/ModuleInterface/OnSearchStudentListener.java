@@ -2,9 +2,9 @@ package app.aryasoft.fooddormunivercity.Modules.ModuleInterface;
 
 import java.util.ArrayList;
 
-import app.aryasoft.fooddormunivercity.Models.StudentModel;
+import app.aryasoft.fooddormunivercity.Models.Student;
 
 public interface OnSearchStudentListener
 {
-    void OnSearchStudent(ArrayList<StudentModel>resultStudentData);
+    void OnSearchStudent(ArrayList<Student>resultStudentData);
 }
