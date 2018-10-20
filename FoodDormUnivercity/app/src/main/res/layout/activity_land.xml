@@ -33,19 +33,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/iran_yekan_mobile_light"
-                    android:textSize="13sp"
-                    android:textStyle="bold"
                     android:text="تعداد غذاهای رزرو شده 500 عدد"
-                    android:textColor="#000"/>
+                    android:textColor="#000"
+                    android:textSize="13sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/iran_yekan_mobile_light"
-                    android:textSize="13sp"
-                    android:textStyle="bold"
                     android:text="تعداد غذاهای تحویل داده شده 20 عدد"
-                    android:textColor="#000"/>
+                    android:textColor="#000"
+                    android:textSize="13sp"
+                    android:textStyle="bold"/>
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
@@ -65,119 +65,146 @@
         android:background="@color/colorPrimaryDark"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingLeft="3dp"
-        android:paddingTop="5dp"
-        android:paddingRight="3dp">
+        android:paddingTop="8dp">
 
-        <ImageView
-            android:id="@+id/imgSearchStudents"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="?selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            app:srcCompat="@drawable/ic_search"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/btnSearchStudents"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
-            android:fontFamily="@font/iran_yekan_mobile_light"
-            android:gravity="center"
-            android:textSize="12sp"
-            android:text="جستجو"
-            android:textColor="#fff"/>
-
-        <ImageView
-            android:id="@+id/imgReportNotDelivered"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
             android:background="?selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
-            app:srcCompat="@drawable/ic_not_deliverd"/>
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="3dp">
 
-        <TextView
-            android:layout_width="wrap_content"
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:srcCompat="@drawable/ic_search"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/iran_yekan_mobile_light"
+                android:gravity="center"
+                android:text="جستجو"
+                android:textColor="#fff"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnReportNotDelivered"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
-            android:fontFamily="@font/iran_yekan_mobile_light"
-            android:gravity="center"
-            android:textSize="12sp"
-            android:text="دریافت نکرده ها"
-            android:textColor="#fff"/>
-
-        <ImageView
-            android:id="@+id/imgReportDelivered"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:padding="3dp"
             android:background="?selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
-            app:srcCompat="@drawable/ic_food_delivered"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/iran_yekan_mobile_light"
             android:gravity="center"
-            android:text="دریافت کرده ها"
-            android:textSize="12sp"
-            android:textColor="#fff"/>
-        <RelativeLayout
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:srcCompat="@drawable/ic_not_deliverd"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/iran_yekan_mobile_light"
+                android:gravity="center"
+                android:text="دریافت نکرده ها"
+                android:textColor="#fff"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnReportDelivered"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:background="?selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:srcCompat="@drawable/ic_food_delivered"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/iran_yekan_mobile_light"
+                android:gravity="center"
+                android:text="دریافت کرده ها"
+                android:textColor="#fff"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_horizontal"
+            android:gravity="bottom|center_horizontal"
+            android:orientation="vertical"
             android:paddingBottom="8dp">
 
-            <ImageView
-                android:id="@+id/imgRefresh"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_above="@id/txtRefresh"
-                android:background="?selectableItemBackground"
-                android:clickable="true"
-                android:layout_centerHorizontal="true"
-                android:focusable="true"
-                app:srcCompat="@drawable/ic_refresh"/>
-
-            <TextView
-                android:id="@+id/txtRefresh"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/btnRefresh"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@id/imgSubmitChanges"
-                android:fontFamily="@font/iran_yekan_mobile_light"
-                android:gravity="center"
-                android:text="بروز رسانی"
-                android:textColor="#fff"
-                android:layout_centerHorizontal="true"
-                android:textSize="12sp"/>
-
-            <ImageView
-                android:id="@+id/imgSubmitChanges"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_above="@id/txtSubmitChanges"
                 android:background="?selectableItemBackground"
                 android:clickable="true"
-                android:layout_centerHorizontal="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:padding="3dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:srcCompat="@drawable/ic_refresh"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/iran_yekan_mobile_light"
+                    android:gravity="center"
+                    android:text="بروز رسانی"
+                    android:textColor="#fff"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnSubmitChanges"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:focusable="true"
-                app:srcCompat="@drawable/ic_save"/>
-
-            <TextView
-                android:id="@+id/txtSubmitChanges"
-                android:layout_width="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:fontFamily="@font/iran_yekan_mobile_light"
                 android:gravity="center"
-                android:text="ثبت نهایی"
-                android:textColor="#fff"
-                android:layout_marginBottom="10dp"
-                android:textSize="12sp"/>
-        </RelativeLayout>
+                android:padding="3dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:srcCompat="@drawable/ic_save"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/iran_yekan_mobile_light"
+                    android:gravity="center"
+                    android:text="ثبت نهایی"
+                    android:textColor="#fff"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

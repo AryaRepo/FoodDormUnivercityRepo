@@ -15,11 +15,9 @@ public class SearchModule extends AsyncTask<SearchModel, Void, Void>
 {
     private ArrayList<StudentModel> studentDataList;
     private OnSearchStudentListener onSearchStudentListener;
-    private Context context;
 
-    public SearchModule(ArrayList<StudentModel> studentDataList, Context context)
+    public SearchModule(ArrayList<StudentModel> studentDataList)
     {
-        this.context = context;
         this.studentDataList = new ArrayList<>();
         this.studentDataList.addAll(studentDataList);
     }
@@ -29,12 +27,6 @@ public class SearchModule extends AsyncTask<SearchModel, Void, Void>
         this.onSearchStudentListener = onSearchStudentListener;
     }
 
-    @Override
-    protected void onPreExecute()
-    {
-        super.onPreExecute();
-        Toast.makeText(context, "wait...", Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     protected Void doInBackground(SearchModel... searchModels)
@@ -102,24 +94,20 @@ public class SearchModule extends AsyncTask<SearchModel, Void, Void>
             }
         }
         //------------------------Clear Distinct Students
-        for (int i = 0; i < resultStudentDataList.size(); ++i)
+        int studentIndex = 0;
+        while (studentIndex < resultStudentDataList.size() - 1)
         {
-            int count = 0;
-            for (int j = 0; j < resultStudentDataList.size(); ++j)
+
+            if (resultStudentDataList.get(studentIndex).StudentId == resultStudentDataList.get(studentIndex + 1).StudentId)
             {
-                count = 0;
-                if (resultStudentDataList.get(i).StudentId == resultStudentDataList.get(j).StudentId)
-                {
-                    ++count;
-                    if (count == 2)
-                    {
-                        resultStudentDataList.remove(i);
-                    }
-                }
+                resultStudentDataList.remove(studentIndex);
+            }
+            else
+            {
+                studentIndex++;
             }
         }
         //---------------------
-        Log.i("res", resultStudentDataList.size() + "");
         onSearchStudentListener.OnSearchStudent(resultStudentDataList);
     }
 
